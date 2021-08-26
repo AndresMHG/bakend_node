@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "BEBUG=app:* nodemon index",
-    "start": "NODE_ENV=production node index"
+    "dev": "SET DEBUG=app:* & nodemon index",
+    "start": "SET NODE_ENV=production & node index"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,19 @@
   "devDependencies": {
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.1",
+    "husky": "^7.0.2",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
